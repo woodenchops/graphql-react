@@ -1,7 +1,7 @@
 // The resolvers provides a resolver function for each API endpoint
 const userArray = [
   {
-    id: 5245454,
+    id: "5245454",
     name: 'Billy Bob',
     email: [
       {email: 'bob@gmail.com'},
@@ -18,16 +18,15 @@ const filterPals =  (id) => {
 const resolvers = {
 Query: {
   getFriend: (root, args, context) => {
-
     return filterPals(args.id)
-  },
+  }
 },
 Mutation: {
   createFriend: (root, {input}) => {
 
       const {name, gender, email} = input
       const newFriend = {
-        id: Math.floor(Math.random() * 100000000000000 + 1),
+        id: Math.floor(Math.random() * 100000000000000 + 1).toString(),
         name,
         gender,
         email

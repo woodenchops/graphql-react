@@ -4,7 +4,7 @@ const { resolvers } = require('./resolvers');
 // Construct a schema, using GraphQL schema language
 const typeDefs = `
   type Query {
-    getFriend(id: Int): Friend
+    getFriend(id: ID): Friend
   }
 
   type Friend {
