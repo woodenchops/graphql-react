@@ -14,30 +14,27 @@ const filterPals =  (id) => {
   return userArray.find(pal => pal.id === id)
 }
 
-// console.log(filterPals(5245454));
-
 
 const resolvers = {
 Query: {
   getFriend: (root, args, context) => {
-    // console.log('hghg', args.id);
+
     return filterPals(args.id)
   },
 },
 Mutation: {
   createFriend: (root, {input}) => {
-    // console.log('kkkkkk', input);
 
       const {name, gender, email} = input
-      const newFiend = userArray.push({
-        id: Math.random(),
+      const newFriend = {
+        id: Math.floor(Math.random() * 100000000000000 + 1),
         name,
         gender,
         email
-      })
+      }
+      userArray.push(newFriend)
 
-      console.log('new', userArray);
-      return newFiend;
+      return newFriend;
 
 
 
