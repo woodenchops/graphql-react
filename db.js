@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+require('dotenv').config({ path: './.env' });
 
 const connectToDatabase = async ({ database }) => {
   try {
     await mongoose.connect(
-      `mongodb+srv://kristian:YbQcIfyMKTYEOpZXAsrzfIAAUwtwnQpJxMZTpHvSWCDHxdC@cluster0.ccmr2.mongodb.net/todos?retryWrites=true&w=majority`,
+      `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.ccmr2.mongodb.net/${database}?retryWrites=true&w=majority`,
       {
         useNewUrlParser: true,
         useCreateIndex: true,
@@ -20,6 +21,6 @@ const connectToDatabase = async ({ database }) => {
   }
 };
 
-module.exports = connectToDatabase;
+console.log('env vars', process.env.TODOS);
 
 module.exports = { connectToDatabase };

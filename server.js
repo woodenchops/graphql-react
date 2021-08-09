@@ -3,6 +3,7 @@ const { graphqlHTTP } = require('express-graphql');
 const { connectToDatabase } = require('./db');
 const { resolvers } = require('./data/resolvers');
 const { schema } = require('./data/schema');
+require('dotenv').config({ path: './.env' });
 
 const root = resolvers;
 
