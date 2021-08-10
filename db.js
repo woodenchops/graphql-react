@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-require('dotenv').config({ path: './.env' });
+require('dotenv').config({ path: './.env.local' });
 
 const connectToDatabase = async ({ database }) => {
   try {
@@ -20,7 +20,5 @@ const connectToDatabase = async ({ database }) => {
     process.exit(1);
   }
 };
-
-console.log('env vars', process.env.TODOS);
 
 module.exports = { connectToDatabase };
