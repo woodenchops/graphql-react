@@ -34,26 +34,28 @@ const TodoList = memo(() => {
   if (error) return `Error! ${error.message}`;
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <ul>
-        {data.getAllTodos &&
-          data.getAllTodos.length > 0 &&
-          data.getAllTodos.map((todo) => (
-            <SingleTodo key={todo.id} todo={todo} />
-          ))}
-      </ul>
-      <input
-        onChange={(e) =>
-          setNewTodo((prevState) => ({
-            ...prevState,
-            name: e.target.value,
-          }))
-        }
-        type='text'
-        value={newTodo.name}
-        placeholder='add todo'
-      />
-    </form>
+    <>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <ul>
+          {data.getAllTodos &&
+            data.getAllTodos.length > 0 &&
+            data.getAllTodos.map((todo) => (
+              <SingleTodo key={todo.id} todo={todo} />
+            ))}
+        </ul>
+        <input
+          onChange={(e) =>
+            setNewTodo((prevState) => ({
+              ...prevState,
+              name: e.target.value,
+            }))
+          }
+          type='text'
+          value={newTodo.name}
+          placeholder='add todo'
+        />
+      </form>
+    </>
   );
 });
 
