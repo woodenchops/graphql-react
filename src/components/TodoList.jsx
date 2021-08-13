@@ -35,6 +35,7 @@ const TodoList = memo(() => {
 
   return (
     <>
+      <h3>All todos...</h3>
       <form onSubmit={(e) => handleSubmit(e)}>
         <ul>
           {data.getAllTodos &&

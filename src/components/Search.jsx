@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
+import SingleTodo from './SingleTodo';
 import { GET_TODOS_QUERY } from '../gql/queries';
 
 function Search() {
@@ -14,16 +15,26 @@ function Search() {
 
   if (loading) return <p>Loading ...</p>;
   return (
-    <div>
-      <form onSubmit={(e) => handleSearch(e)}>
-        <input
-          type='text'
-          placeholder='search...'
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </form>
-      <pre>{JSON.stringify(data)}</pre>
-    </div>
+    <>
+      <div>
+        <form onSubmit={(e) => handleSearch(e)}>
+          <input
+            type='text'
+            placeholder='search...'
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </form>
+        {data && <h3>search results...</h3>}
+        <ul>
+          {data &&
+            data.getTodos &&
+            data.getTodos.length > 0 &&
+            data.getTodos.map((todo) => <SingleTodo key={todo} todo={todo} />)}
+        </ul>
+
+        <pre>{data && JSON.stringify(data.getTodos)}</pre>
+      </div>
+    </>
   );
 }
 
