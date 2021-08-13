@@ -9,7 +9,7 @@ function Search() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    getTodo({ variables: { id: search } });
+    getTodo({ variables: { todoName: search } });
   };
 
   if (loading) return <p>Loading ...</p>;

@@ -4,8 +4,10 @@ const Todo = require('../data/models');
 
 const resolvers = {
   Query: {
-    getTodos: (root, { id }, context) => {
-      return Todo.findById(id);
+    getTodos: (root, { todoName }, context) => {
+      const res = Todo.find({ name: { $regex: todoName } });
+
+      return res;
     },
     getAllTodos: (root, args, context) => {
       return Todo.find({});

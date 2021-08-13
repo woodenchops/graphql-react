@@ -11,8 +11,8 @@ export const GET_ALL_TODOS_QUERY = gql`
 `;
 
 export const GET_TODOS_QUERY = gql`
-  query GetTodos($id: ID) {
-    getTodos(id: $id) {
+  query GetTodos($todoName: String) {
+    getTodos(todoName: $todoName) {
       name
       completed
     }
