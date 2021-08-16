@@ -1,11 +1,15 @@
-import { useState, memo } from 'react';
+import { useState, memo, useEffect } from 'react';
 import { GET_ALL_TODOS_QUERY } from '../gql/queries/index.js';
 import { CREATE_TODO_MUTATION } from '../gql/mutations/index.js';
 import { useQuery, useMutation } from '@apollo/client';
 import SingleTodo from '../components/SingleTodo';
 
 const TodoList = memo(() => {
-  const { loading, error, data } = useQuery(GET_ALL_TODOS_QUERY);
+  const [cachedQueryResults, setCachedQueryResults] = useState(null);
+
+  const { loading, error, data } = useQuery(GET_ALL_TODOS_QUERY, {
+    variables: { cachedQueryResults },
+  });
 
   const [addTodo] = useMutation(CREATE_TODO_MUTATION);
 
@@ -13,6 +17,12 @@ const TodoList = memo(() => {
     name: '',
     completed: false,
   });
+
+  useEffect(() => {
+    if (data) {
+      setCachedQueryResults(data);
+    }
+  }, [data]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
